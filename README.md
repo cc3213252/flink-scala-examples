@@ -33,5 +33,5 @@ flink-1.12.0版本配合scala是2.11.12，故下载flink-1.12.0-bin-scala_2.11.t
    只有按这种方式创建的工程编译才不会出错
 
 4、设置完后再创建子工程，用Scala-scala创建
-
+   需要把mvn生成的工程移到这个工程下面来  
 5、在Run/Debug Configuation里面，把Include Dependencies with Provided scope打上勾
