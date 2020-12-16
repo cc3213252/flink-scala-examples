@@ -14,3 +14,8 @@ main会联想快捷生成
 
 import org.apache.flink.streaming.api.scala._
 用下划线全部包含进来，如果不这样做，之后使用算子的时候，可能由于隐式转换的原因出错  
+
+## 测试socket
+
+打开： nc -l 11111
+输入一些字符  

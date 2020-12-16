@@ -2,11 +2,11 @@ package source
 
 import org.apache.flink.streaming.api.scala._
 
-object ReadTextFile {
+object SocketTextStream {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
-    val stream = env.readTextFile("README.md")
+    val stream = env.socketTextStream("localhost", 11111)
     stream.print()
-    env.execute("read job")
+    env.execute("socket job")
   }
 }

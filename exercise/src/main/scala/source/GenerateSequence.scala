@@ -2,11 +2,11 @@ package source
 
 import org.apache.flink.streaming.api.scala._
 
-object ReadTextFile {
+object GenerateSequence {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
-    val stream = env.readTextFile("README.md")
+    val stream = env.generateSequence(1, 10)
     stream.print()
-    env.execute("read job")
+    env.execute("generate job")
   }
 }
