@@ -19,3 +19,12 @@ import org.apache.flink.streaming.api.scala._
 
 打开： nc -l 11111
 输入一些字符  
+
+## 问题
+
+Split中没有split这个方法
+
+## KeyBy
+
+同一个key对应的数据会在同一个线程中，说明keyby会把同一个key分到同一个分区中  
+结果说明flink会把每一个中间步骤都输出，如果想在flink做聚合操作，必须引入窗口概念  
