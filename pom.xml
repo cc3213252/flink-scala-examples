@@ -11,6 +11,7 @@
     <modules>
         <module>wordcount</module>
         <module>exercise</module>
+        <module>training</module>
     </modules>
 
 
