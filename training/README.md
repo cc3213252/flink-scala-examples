@@ -9,9 +9,13 @@ https://github.com/apache/flink-training
 
 2、HourlyTipsSolution  
 https://github.com/apache/flink-training/tree/master/hourly-tips  
-先统计每个司机每个小时赚到的小费，再求最大值  
+每小时最大费用，先统计每个司机每个小时赚到的小费，再求最大值  
 窗口处理函数的使用  
 
 3、RidesAndFaresSolution
-一个行驶流，一个车费流，通过rideId关联，富化后输出  
+富化信息，一个行驶流，一个车费流，通过rideId关联，富化后输出  
 Stateful Enrichment的使用  
+
+4、LongRidesSolution  
+疲劳驾驶告警，驾驶超两小时告警  
+getRuntimeContext、KeyedProcessFunction使用  
