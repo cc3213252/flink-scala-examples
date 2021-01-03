@@ -18,6 +18,7 @@ import org.apache.flink.streaming.api.scala._
 ## 测试socket
 
 打开： nc -l 11111
+nc -lk 11111 加k表示保持住
 输入一些字符  
 
 ## 问题
