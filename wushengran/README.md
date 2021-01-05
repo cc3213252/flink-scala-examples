@@ -21,4 +21,8 @@ cd kafka
 ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sensor
 sensor_1, 1547718199, 35.8
 ```
- 
+
+## reduce
+
+第一个参数：上一次累积的结果  
+第二个参数：这一次进来的数据
