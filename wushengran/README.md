@@ -9,6 +9,7 @@ https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka_2.12/1
 
 ## kafka测试
 
+测试SourceTest
 ```bash
 cd zookeeper/conf
 cp zoo_sample.cfg zoo.cfg
@@ -22,6 +23,21 @@ cd kafka
 sensor_1, 1547718199, 35.8
 ```
 
+测试KafkaSinkTest
+```bash
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sinktest
+```
+再启动程序  
+
+测试KafkaSinkTest2，这个是kafka作为数据管道测试  
+```bash
+./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sensor  
+sensor_6,1547718201,15.4
+
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sinktest
+
+启动程序
+```
 ## reduce
 
 第一个参数：上一次累积的结果  
@@ -34,6 +50,10 @@ sensor_1, 1547718199, 35.8
 Union必须是两个相同类型流
 connect可以是不同类型流，再加上CoMap转换回DataStream
 
-## sink
+## 测试redis
 
-写文件，
+brew services start redis  
+keys *
+跑程序  
+keys *  
+hgetall sensor_temp  

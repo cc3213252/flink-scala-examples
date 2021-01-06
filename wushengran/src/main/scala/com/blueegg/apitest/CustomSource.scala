@@ -7,9 +7,6 @@ import org.apache.flink.streaming.api.scala._
 
 import scala.util.Random
 
-// 定义样例类，温度传感器
-case class SensorReading(id: String, timestamp: Long, temperature: Double)
-
 
 object CustomSource {
   def main(args: Array[String]): Unit = {

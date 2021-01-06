@@ -39,8 +39,8 @@ object TransformTest3 {
 
 }
 
-
-class MyReduceFunction extends ReduceFunction[SensorReading] {
-  override def reduce(t: SensorReading, t1: SensorReading): SensorReading =
-    SensorReading(t.id, t1.timestamp, t.temperature.min(t1.temperature))
-}
+//
+//class MyReduceFunction extends ReduceFunction[SensorReading] {
+//  override def reduce(t: SensorReading, t1: SensorReading): SensorReading =
+//    SensorReading(t.id, t1.timestamp, t.temperature.min(t1.temperature))
+//}
