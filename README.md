@@ -38,7 +38,7 @@ flink-1.12.0版本配合scala是2.11.12，故下载flink-1.12.0-bin-scala_2.11.t
 
 ## 以后工程创建
 
-1、创建主工程，用Maven创建
-2、用Maven创建子工程
-3、pom文件拷贝，maven更新
-4、在Run/Debug Configuation里面，把Include Dependencies with Provided scope打上勾
+1、创建主工程，用Maven创建  
+2、用Maven创建子工程  
+3、pom文件拷贝，maven更新  
+4、在Run/Debug Configuation里面，把Include Dependencies with Provided scope打上勾  
