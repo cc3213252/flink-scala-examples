@@ -77,3 +77,13 @@ https://www.elastic.co/cn/downloads/past-releases#elasticsearch
 跑程序
 curl localhost:9200/_cat/indices?v  
 curl localhost:9200/sensor/_search?pretty  
+
+## mysql
+
+首先查看服务端mysql版本，是8.0.16  
+mvnrepositry中找对应版本的pom库  
+
+create table sensor_temp (
+    id varchar(20) not null,
+    temp double not null
+)
