@@ -1,6 +1,7 @@
 # 尚硅谷武晟然视频练习
 
 https://www.bilibili.com/video/BV1Qp4y1Y7YN?p=21
+练习使用了最新的flink 1.12.0，视频是1.10
 
 ## 增加kafka依赖
 
@@ -57,3 +58,22 @@ keys *
 跑程序  
 keys *  
 hgetall sensor_temp  
+
+## 不知道如何使用es sink？
+
+看源码，看到构造方法是私有，就找有没有build方法
+
+## 找最新es包
+
+搜索flink-connector-elasticsearch7
+
+## 测试es
+
+从pom包得知es是7.2.11版本最新  
+https://www.elastic.co/cn/downloads/past-releases#elasticsearch  
+得知es匹配的版本是7.2.1，下载mac版    
+
+./bin/elasticsearch
+跑程序
+curl localhost:9200/_cat/indices?v  
+curl localhost:9200/sensor/_search?pretty  
