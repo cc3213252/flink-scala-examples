@@ -87,3 +87,8 @@ create table sensor_temp (
     id varchar(20) not null,
     temp double not null
 )
+
+## widowTest碰到问题
+
+版本原因，无法运行，报：
+did you forget to call 'DataStream.assignTimestampsAndWatermarks'
