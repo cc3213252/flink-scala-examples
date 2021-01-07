@@ -90,5 +90,6 @@ create table sensor_temp (
 
 ## widowTest碰到问题
 
-版本原因，无法运行，报：
+【ok】版本原因，无法运行，报：
 did you forget to call 'DataStream.assignTimestampsAndWatermarks'
+设置assignTimestampsAndWatermarks后ok
