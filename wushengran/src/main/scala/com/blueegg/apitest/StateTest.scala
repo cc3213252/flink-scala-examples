@@ -41,7 +41,7 @@ object StateTest {
 
 
 // keyed state测试： 必须定义在RichFunction中，因为需要运行时上下文
-class MyRichMapper extends RichMapFunction[SensorReading, String] {
+class MyRichMapper2 extends RichMapFunction[SensorReading, String] {
   var valueState: ValueState[Double] = _
   lazy val listState: ListState[Int] = getRuntimeContext.getListState(new ListStateDescriptor[Int]("liststate", classOf[Int]))
   lazy val mapState: MapState[String, Double] = getRuntimeContext.getMapState(new MapStateDescriptor[String,Double]("mapstate", classOf[String], classOf[Double]))
