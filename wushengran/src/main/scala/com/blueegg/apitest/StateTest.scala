@@ -1,16 +1,31 @@
 package com.blueegg.apitest
 
 import java.util
+import java.util.concurrent.TimeUnit
 
 import org.apache.flink.api.common.functions.RichMapFunction
+import org.apache.flink.api.common.restartstrategy.RestartStrategies
 import org.apache.flink.api.common.state.{ListState, ListStateDescriptor, MapState, MapStateDescriptor, ReducingState, ReducingStateDescriptor, ValueState, ValueStateDescriptor}
+import org.apache.flink.api.common.time.Time
 import org.apache.flink.configuration.Configuration
+import org.apache.flink.streaming.api.CheckpointingMode
 import org.apache.flink.streaming.api.scala._
 
 object StateTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
+    env.enableCheckpointing(1000L)
+    env.getCheckpointConfig.setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE)
+    env.getCheckpointConfig.setCheckpointTimeout(60000L) // 1分钟
+    env.getCheckpointConfig.setMaxConcurrentCheckpoints(2)
+    env.getCheckpointConfig.setMinPauseBetweenCheckpoints(500L)   // 最小间隔时间，这个和上面这个配一个即可
+    env.getCheckpointConfig.setPreferCheckpointForRecovery(true)
+    env.getCheckpointConfig.setTolerableCheckpointFailureNumber(2) // 要容忍多少次checkpoint失败
+
+    env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 60000L)) // 固定时间间隔重启
+    env.setRestartStrategy(RestartStrategies.failureRateRestart(5, Time.of(5, TimeUnit.MINUTES), Time.of(10, TimeUnit.SECONDS)))
+
     val inputStream = env.socketTextStream("localhost", 7777)
 
     // 先转换成样例类类型
