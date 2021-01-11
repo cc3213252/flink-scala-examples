@@ -5,3 +5,8 @@ sensor_1,1547718199,35.8
 sensor_1,1547718199,36.8
 sensor_1,1547718199,37
 sensor_1,1547718199,38
+
+## 测试SideOutputTest
+
+sensor_1,1547718199,35.8   high
+sensor_1,1547718199,15     low
