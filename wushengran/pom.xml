@@ -98,7 +98,7 @@
         <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka_2.12</artifactId>
+            <artifactId>flink-connector-kafka_2.11</artifactId>
             <version>1.12.0</version>
         </dependency>
 
@@ -128,6 +128,18 @@
             <artifactId>flink-table-planner-blink_2.11</artifactId>
             <version>1.12.0</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-csv -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-csv</artifactId>
+            <version>1.12.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
+            <version>1.12.0</version>
         </dependency>
     </dependencies>
 
