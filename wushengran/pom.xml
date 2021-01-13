@@ -141,6 +141,18 @@
             <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
             <version>1.12.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-json -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+            <version>1.12.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+            <version>1.12.0</version>
+        </dependency>
     </dependencies>
 
     <build>
