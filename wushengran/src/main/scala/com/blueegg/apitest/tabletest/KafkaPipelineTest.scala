@@ -1,29 +1,35 @@
 package com.blueegg.apitest.tabletest
 
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.table.api.bridge.scala._
 import org.apache.flink.table.api._
-import org.apache.flink.table.descriptors.{Csv, FileSystem, OldCsv, Schema}
+import org.apache.flink.table.api.bridge.scala._
+import org.apache.flink.table.descriptors.{Csv, Kafka, Schema}
 
-object FileOutputTest {
+object KafkaPipelineTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
 
     val tableEnv = StreamTableEnvironment.create(env)
-    val filePath = "/Users/cyd/Desktop/study/flink/flink-scala-examples/wushengran/src/main/resources/sensor.txt"
 
-    tableEnv.connect(new FileSystem().path(filePath))
+    // 2.2 从kafka读取数据
+    tableEnv.connect(new Kafka()
+      .version("universal")
+      .topic("sensor")
+      .property("zookeeper.connect", "localhost:2181")
+      .property("bootstrap.servers", "localhost:9092")
+    )
       .withFormat(new Csv())
       .withSchema(new Schema()
         .field("id", DataTypes.STRING())
         .field("timestamp", DataTypes.BIGINT())
         .field("temperature", DataTypes.DOUBLE())
       )
-      .createTemporaryTable("inputTable")
+      .createTemporaryTable("kafkaInputTable")
 
+    // 3. 查询转换
     // 3.1 简单转换
-    val sensorTable = tableEnv.from("inputTable")
+    val sensorTable = tableEnv.from("kafkaInputTable")
     val resultTable = sensorTable
       .select($"id", $"temperature")
       .filter($"id" === "sensor_1")
@@ -33,21 +39,20 @@ object FileOutputTest {
       .groupBy('id) // 基于id分组
       .select('id, 'id.count() as 'count)
 
-//    resultTable.toAppendStream[(String, Double)].print("result")
-//    aggTable.toRetractStream[(String, Long)].print("agg") // false表示这条数据失效
-
-    // 4 输出到文件
-    // 注册输出表
-    val outputPath = "/Users/cyd/Desktop/study/flink/flink-scala-examples/wushengran/src/main/resources/output.txt"
-
-    tableEnv.connect(new FileSystem().path(outputPath))
+    // 4 输出到kafka
+    tableEnv.connect(new Kafka()
+      .version("universal")
+      .topic("sinktest")
+      .property("zookeeper.connect", "localhost:2181")
+      .property("bootstrap.servers", "localhost:9092")
+    )
       .withFormat(new Csv())
       .withSchema(new Schema()
         .field("id", DataTypes.STRING())
         .field("temperature", DataTypes.DOUBLE())
       )
-      .createTemporaryTable("outputTable")
+      .createTemporaryTable("kafkaOutputTable")
 
-    resultTable.executeInsert("outputTable") // 版本升级，方法不存在，改用executeInsert
+    resultTable.executeInsert("kafkaOutputTable")
   }
 }
