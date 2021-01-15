@@ -27,3 +27,9 @@ https://blog.csdn.net/weixin_41608066/article/details/106010473
     <version>1.12.0</version>
 </dependency>
 ```
+
+## es支持的模式
+
+append  
+upsert
+不支持Retract    
